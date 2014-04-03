@@ -1,7 +1,11 @@
 =run
-LAST_LAUNCH_TIMESTAMP=1396310960367
+LAST_LAUNCH_TIMESTAMP=1396473795719
+april2lecture\:launchMode=run
+april2lecture\:launchShortcut=com.appcelerator.titanium.mobile.ui.ios.simulator.iphone.launchShortcut.iPhone Retina (4 inch 64-bit)
 eclipse.preferences.version=1
 preference.show.console.onError=true
 preference.studio.perspective.version=103
+tanaka_nana_project1\:launchMode=run
+tanaka_nana_project1\:launchShortcut=com.appcelerator.titanium.mobile.ui.android.device.launchShortcut
 vfw1310\:launchMode=run
-vfw1310\:launchShortcut=com.appcelerator.titanium.mobile.ui.android.device.launchShortcut
+vfw1310\:launchShortcut=com.appcelerator.titanium.mobile.ui.ios.simulator.iphone.launchShortcut.iPhone Retina (4 inch)

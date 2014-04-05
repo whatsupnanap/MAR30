@@ -1,0 +1,6 @@
+
+//rollがchange from april2lecture diceが
+var getChange = function(){
+	var animal = [dog,cat,bitch,pig,mouse,rabbit];
+	//var rolls = [inu, neko,kuso on-nah, buta, nezueme,ugh-sir-gee];
+	var results = [];

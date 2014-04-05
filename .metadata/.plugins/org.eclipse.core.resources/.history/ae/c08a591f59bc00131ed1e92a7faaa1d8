@@ -1,0 +1,64 @@
+var win = Ti.UI.createWindow({
+	backgroundColor:"#fff"
+});
+
+//1. UI component, 2.progress, 3.Decent Timer, 4. listeners
+
+var progress = Ti.UI.createProgressBar({
+	min:0,
+	max:100,
+	value: 30,
+	message:"Can you stop the progress?",
+	width:"70%"
+});
+
+var randomViews =Ti.UI.createView({
+	width:"100",
+	height:"50",
+	backgroundColor:"blue",
+	borderColor:"black"
+	
+});
+
+
+var increcement = function(){
+	if(progress.value < 100){
+		progress.fireEvent("update",{value:-35});
+		//move box
+		randomViews.left = Math.random()*Ti.Platform.displayCaps.platformWidth;
+		randomViews.top = Math.random()*Ti.Platform.displayCaps.platformHeight;
+	}else{
+		//game over message
+		Ti.App.fireEvent("complete");
+		alert("YOU FAIL!!!!!!!!!!!!");
+	}
+};
+
+var progTimer = setInterval(increcement,1000);
+
+progress.addEventListener("update",function(e){
+	progress.value=progress.value + e.value;
+});
+
+Ti.App.addEventListener("complete", function(){
+	progress=hide();
+	randomViews.hide();
+	clearInterval(progTimer);
+	
+});
+var decrement = function(){
+	if(progress.value <= 0){
+		Ti.App.fireEvent("complete");
+		alert("you win win!");
+	}else{
+		progress.fireEvent("update", {value: -50});	
+	}
+};
+
+
+win.add(randomViews);
+win.add(progress);
+progress.show();
+win.open();
+
+　

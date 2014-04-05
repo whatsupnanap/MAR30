@@ -1,0 +1,15 @@
+var deviceWidth = Ti.Platform.displayCaps.platformWidth;
+var deviceHeight = Ti.Platform.displayCaps.platformHeight;
+
+
+var win = Ti.UI.createWindow({
+	backgroundColor: "#fff",
+	
+});
+
+console.log("width: " + deviceWidth);
+console.log("height: "+ deviceHeight);
+
+win.open()
+
+

@@ -1,0 +1,22 @@
+var win = Ti.UI.createWindow({
+	backgroundColor: "#FFF"
+});
+
+var button = Ti.UI.createView({
+	width: 100,
+	height: 50,
+	backgroundColor: "#ff0000"
+});
+
+
+
+
+
+
+win.add(button);
+win.open();
+
+
+var localWindow = require("day3");
+
+alert(localWindow.msg);

@@ -1,0 +1,23 @@
+{
+	"target": "simulator",
+	"deployType": "development",
+	"deviceFamily": "universal",
+	"iosSdkPath": "/Users/nanap/Library/Application Support/Titanium/mobilesdk/osx/3.2.2.GA/iphone",
+	"tiCoreHash": "77157e1ffaec640cf559356a147b6a4c",
+	"modulesHash": "d41d8cd98f00b204e9800998ecf8427e",
+	"modulesNativeHash": "d41d8cd98f00b204e9800998ecf8427e",
+	"gitHash": "96e9a07",
+	"name": "tanaka_nana_projec1",
+	"id": "com.tanaka.project1",
+	"analytics": true,
+	"publisher": "nanap",
+	"url": "http://",
+	"version": "1.0",
+	"description": "not specified",
+	"copyright": "2014 by nanap",
+	"guid": "607fece0-b0be-4d6e-92a5-0dea2b270f38",
+	"skipJSMinification": true,
+	"forceCopy": false,
+	"forceCopyAll": false,
+	"encryptJS": false
+}

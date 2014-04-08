@@ -1,0 +1,59 @@
+var mainWindow = Ti.UI.createWindow({
+	backgroundColor : "#fff"
+});
+
+/*var topName = Ti.UI.createLabel({
+	text: "minions",
+	color:"#71efd3",
+	font:{fontSize: "20dp", fontFamily:"Helvetica"}
+	
+});
+
+var buttonTop = Ti.UI.createView({
+	backgroundColor:"#8375bc",
+	borderRadius: 5,
+	borderWidth:1,
+	height: 50,
+	bottom:10,
+	width:80,
+});
+
+var bottomName = Ti.UI.createLabel({
+	text: "others",
+	color:"#71efd3",
+	font:{fontSize: "20dp", fontFamily:"Helvetica"}
+	
+});
+
+var buttonBtm = Ti.UI.createView({
+	backgroundColor:"#8375bc",
+	borderRadius: 5,
+	borderWidth:1,
+	height: 50,
+	bottom:10,
+	width:80,
+	
+});
+
+*/
+//rollBtn = minion
+var minion = Ti.UI.createView({
+	backgroundColor:"#333",
+	width: 250,
+	height:60
+});
+
+var minionBtnLabel = Ti.UI.createLabel({
+	text:"minion",
+	color:"#FFF",
+	font:{fontSize:"14dp", fontFamily:"Helvetica"}
+});
+
+//mainWindow.add(buttonTop,buttonBtm);
+
+/*buttonTop.add(topName);
+buttonBtm.add(bottomName);*/
+minion.add(minionBtnLabel);
+mainWindow.add(minion);
+
+mainWindow.open();

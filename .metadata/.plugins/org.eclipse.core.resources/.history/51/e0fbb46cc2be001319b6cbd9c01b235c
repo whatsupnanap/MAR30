@@ -1,0 +1,57 @@
+//main window
+var mainWindow = Ti.UI.createWindow({
+	backgroundColor : "#fff"
+});
+
+
+//conrtol buttons 
+var minion = Ti.UI.createView({
+	backgroundColor:"#333",
+	width: 250,
+	height:60,
+	top:140,
+});
+
+var minionBtnLabel = Ti.UI.createLabel({
+	text:"minion",
+	color:"#FFF",
+	font:{fontSize:"14dp", fontFamily:"Helvetica"}
+});
+
+var others = Ti.UI.createView({
+	backgroundColor:"#333",
+	width: 250,
+	height:60
+});
+
+var othersBtnLabel = Ti.UI.createLabel({
+	text:"Others",
+	color:"#FFF",
+	font:{fontSize:"14dp", fontFamily:"Helvetica"}
+});
+
+
+var navWindow = Ti.UI.iOS.createNavigationWindow({
+	window: mainWindow
+});
+
+
+
+//ひらけごま
+minion.addEventListener("click",openWindow);
+
+
+//iPhone用と伝えている
+var askName = Ti.Platform.osname;
+if (askName === "iphone") {
+	table.style = Ti.UI.iPhone.TableViewStyle.GROUPED;
+};
+
+
+//main windowにたされたやつら
+minion.add(minionBtnLabel);
+mainWindow.add(minion);
+others.add(othersBtnLabel);
+mainWindow.add(others);
+navWindow.open();
+mainWindow.open();

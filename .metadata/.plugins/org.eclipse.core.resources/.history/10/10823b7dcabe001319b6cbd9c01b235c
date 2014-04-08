@@ -1,0 +1,109 @@
+//main window
+var mainWindow = Ti.UI.createWindow({
+	backgroundColor : "#fff"
+});
+
+var navWindow = Ti.UI.iOS.createNavigationWindow({
+	window: mainWindow
+});
+
+
+//１個目のボタン buttons 
+var minion = Ti.UI.createView({
+	backgroundColor:"#333",
+	width: 250,
+	height:60,
+	top:140,
+});
+
+var minionBtnLabel = Ti.UI.createLabel({
+	text:"minion",
+	color:"#FFF",
+	font:{fontSize:"14dp", fontFamily:"Helvetica"}
+});
+
+//2個目のボタン
+var others = Ti.UI.createView({
+	backgroundColor:"#333",
+	width: 250,
+	height:60
+});
+
+var othersBtnLabel = Ti.UI.createLabel({
+	text:"Others",
+	color:"#FFF",
+	font:{fontSize:"14dp", fontFamily:"Helvetica"}
+});
+
+
+//minionの名前
+var minionsData = [{
+	title : "Kevin",
+	description : "____ text here.",
+}, {
+	title : "Carl",
+	description : "____ text here.",
+}, {	
+	title : "Dave",
+	description : "____ text here.",
+}, {
+	title : "Jerry",
+	description : "____ text here.",
+}];
+
+var table = Ti.UI.createTableView({
+	top : 20
+});
+
+//２ページ目作成
+var getData = function() {
+	var detailWindow = Ti.UI.createWindow({
+		backgroundColor : "#fff",
+		title: this.tittle
+	});
+	var detailText = Ti.UI.createLabel({
+		text : minionsData[0].description,
+		font:{fontsize:"18pd", fontFamily:"Arial"}
+	});
+
+var minionsSection = Ti.UI.createTableViewSection({
+	headTitle : "minions",
+	footerTitle : "List of minions"
+});
+for (var i = 0, j = minionsData.length; i < j; i++) {
+	var theRow = Ti.UI.createTableViewRow({
+		title : minionsData[i].title,
+		desc:minionsData[i].descripition,
+		hasDetail:true,
+		hasChild:true
+	});
+	minionsSection.add(theRow);
+	theRow.addEventListener("click", getData);
+};
+
+
+
+//backボタン
+minion.addEventListener("click",openWindow);
+
+
+//iPhone用と伝えている
+var askName = Ti.Platform.osname;
+if (askName === "iphone") {
+	table.style = Ti.UI.iPhone.TableViewStyle.GROUPED;
+};
+
+
+var mySections = [minionsSection];
+
+
+
+table.setData(mySections);
+mainWindow.add(table);
+//main windowにたされたやつら
+minion.add(minionBtnLabel);
+mainWindow.add(minion);
+others.add(othersBtnLabel);
+mainWindow.add(others);
+navWindow.open();
+//mainWindow.open();

@@ -1,0 +1,38 @@
+var mainWindow = Ti.UI.createWindow({
+	backgroundColor : "#fff"
+});
+
+
+//rollBtn = minion
+var minion = Ti.UI.createView({
+	backgroundColor:"#333",
+	width: 250,
+	height:60,
+	top:40,
+});
+
+var minionBtnLabel = Ti.UI.createLabel({
+	text:"minion",
+	color:"#FFF",
+	font:{fontSize:"14dp", fontFamily:"Helvetica"}
+});
+
+var others = Ti.UI.createView({
+	backgroundColor:"#333",
+	width: 250,
+	height:60
+});
+
+var othersBtnLabel = Ti.UI.createLabel({
+	text:"Others",
+	color:"#FFF",
+	font:{fontSize:"14dp", fontFamily:"Helvetica"}
+});
+
+
+minion.add(minionBtnLabel);
+mainWindow.add(minion);
+others.add(othersBtnLabel);
+mainWindow.add(others);
+
+mainWindow.open();

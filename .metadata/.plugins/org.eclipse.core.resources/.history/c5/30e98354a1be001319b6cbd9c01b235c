@@ -1,0 +1,42 @@
+var mainWindow = Ti.UI.createWindow({
+	backgroundColor:"#fff"
+});
+
+var fruitsData = [
+{title: "Apples"},
+{title:"Bananas"}
+];
+
+var vegiesData = [
+{title:"Carrots"},
+{title:"Potates"}
+
+];
+
+var table = Ti.UI.createTableView({
+style:Ti.UI.iPhone.TableViewStyle.GROUPED
+});
+
+var fruitsSection = Ti.UI.createTableViewSection({
+	headTitle:"Fruit",
+	footerTitle:"List of fruits items"
+});
+
+var vegiesSection = Ti.UI.createTableViewSection({
+	headTitle:"Vegies",
+	footerTitle:"List of vegies items"
+});
+
+
+
+var askName = Ti.Platform.anname;
+if(askName === "iphone"){
+	table.style = Ti.UI.iPhone.TableViewStyle.GROUPED;
+}
+
+var mySection = [vegiesSection,fruitsSection];
+
+
+table.setData(mySection);
+mainWindow.add(table);
+mainWindow.open();

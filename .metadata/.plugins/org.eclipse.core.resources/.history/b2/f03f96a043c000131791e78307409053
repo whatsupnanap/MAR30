@@ -1,0 +1,129 @@
+//main window
+var mainWindow = Ti.UI.createWindow({
+	backgroundColor : "#fff"
+});
+
+var navWindow = Ti.UI.iOS.createNavigationWindow({
+	window: mainWindow
+});
+
+//１個目のボタン buttons 
+var minion = Ti.UI.createView({
+	backgroundColor:"#333",
+	width: 250,
+	height:60,
+	top:140,
+});
+
+var minionBtnLabel = Ti.UI.createLabel({
+	text:"minion",
+	color:"#FFF",
+	font:{fontSize:"14dp", fontFamily:"Helvetica"}
+});
+
+//2個目のボタン
+var others = Ti.UI.createView({
+	backgroundColor:"#333",
+	width: 250,
+	height:60
+});
+
+var othersBtnLabel = Ti.UI.createLabel({
+	text:"Others",
+	color:"#FFF",
+	font:{fontSize:"14dp", fontFamily:"Helvetica"}
+});
+
+//minionの名前
+var minionsData = [{
+	title : "Kevin",
+	description : "he has only 1 eye, His hair is flat hair.",
+}, {
+	title : "Stuart",
+	description : "he has only 1 eys, his hair is flat and centered.",
+}, {	
+	title : "Dave",
+	description : "He has 2 eyes, his hair is falt and centered.",
+}, {
+	title : "Jerry",
+	description : "He has 2 eyes, his hair is spiky.",
+}];
+
+var table = Ti.UI.createTableView({
+	top : 20
+});
+
+//２ページ目作成
+var getData = function() {
+	var detailWindow2 = Ti.UI.createWindow({
+		backgroundColor : "#000",
+		title: this.title
+	});
+	var detailText2 = Ti.UI.createLabel({
+		text : this.desc,
+		font:{fontsize:"18pd", fontFamily:"Arial"}
+	});
+	detailWindow2.add(detailText2);
+	//detailWindow2.add(table);
+	navWindow.openWindow(detailWindow2);
+};
+
+var getData2 = function() {
+	var detailWindow = Ti.UI.createWindow({
+		backgroundColor : "#fff",
+		title: this.title
+	});
+	var detailText = Ti.UI.createLabel({
+		text : this.desc,
+		font:{fontsize:"18pd", fontFamily:"Arial"}
+	});
+	
+	//detailWindow.add(close);
+	detailWindow.add(detailText);
+	detailWindow.add(table);
+	//detailWindow.open();
+	navWindow.openWindow(detailWindow);
+};
+
+var minionsSection = Ti.UI.createTableViewSection({
+	headTitle : "minions",
+	footerTitle : "minions"
+});
+
+for (var i = 0, j = minionsData.length; i < j; i++) {
+	var theRow = Ti.UI.createTableViewRow({
+		title : minionsData[i].title,
+		description:minionsData[i].description,
+		hasDetail:true,
+		hasChild:true
+	});
+	minionsSection.add(theRow);
+	theRow.addEventListener("click", getData);
+};
+
+//backボタン
+minion.addEventListener("click",getData2);
+
+
+//iPhone用と伝えている
+var askName = Ti.Platform.osname;
+if (askName === "iphone") {
+	table.style = Ti.UI.iPhone.TableViewStyle.GROUPED;
+};
+
+
+var mySections = [minionsSection];
+
+
+
+table.setData(mySections);
+//detailWindow.add(table);
+
+//main windowにたされたやつら
+minion.add(minionBtnLabel);
+mainWindow.add(minion);
+others.add(othersBtnLabel);
+mainWindow.add(others);
+
+navWindow.open();
+//mainWindow.open();

@@ -1,0 +1,56 @@
+var jsonData = {
+	"minions":{
+	/*[
+	{
+		"carName":"honda",
+		"carModel":"A",
+		"year":07,
+		"topSpeed":400,
+		"currentSpeed":50
+	},
+	{
+		"carName": "nissan",
+		"carModel":"B",
+		"year":09,
+		"topSpeed":500,
+		"currentSpeed":100
+	},
+	{
+		"carName": "toyota",
+		"carModel":"C",
+		"year":13,
+		"topSpeed":200,
+		"currentSpeed":100
+	},
+	
+	
+	]
+	
+	
+};*/
+
+//myList = jsonData 
+//var myList = [{
+	//"minion":{
+		"head":"minions",
+		"foot":"List of minions",
+		"minions":[
+				{"title" : "Kevin", "description" : "he has only 1 eye, His hair is flat hair"},
+				{"title" : "Stuart", "description" : "he has only 1 eys, his hair is flat and centered."},
+				{"title" : "Dave", "description" : "He has 2 eyes, his hair is falt and centered."},
+				{"title" : "Jerry", "description" : "He has 2 eyes, his hair is spiky."},
+					
+		]
+	},
+
+var jsonFunction = function(){
+	
+	for(var element in jsonData.minions){
+		for (var element in jsonData.minions[element]){
+			 console.log(jsonData.minions[element][key]);
+		};
+	}
+};
+jsonFunction();
+
+export.msg = jsonData;

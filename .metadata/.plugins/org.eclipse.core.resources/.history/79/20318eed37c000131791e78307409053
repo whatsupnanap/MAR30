@@ -1,0 +1,161 @@
+var mainWindow = Ti.UI.createWindow({
+	backgroundColor : "#fff"
+});
+
+var navWindow = Ti.UI.iOS.createNavigationWindow({
+	window : mainWindow
+});
+
+/*var fruitsData = [{
+ title : "Apples",
+ description : "____ text here.",
+ price : "$__"
+ }, {
+ title : "Bananas",
+ description : "____ text here.",
+ price : "$__"
+ }];
+ var vegiesData = [{
+ title : "Carrots",
+ description : "____ text here.",
+ price : "$__"
+ }, {
+ title : "Potates",
+ description : "____ text here.",
+ price : "$__"
+ }];*/
+
+var myList = {
+	"fruits":{
+		"head":"fruit section",
+		"foot":"List of fruits items",
+		"items":[
+			{"title" : "Apples", "description" : "____ text here.", "price" : "$__"},
+			{"title" : "Bananas","description" : "____ text here.","price" : "$__"}
+		]
+	},	
+	"vegies":{
+	"head":"Vegies section",
+	"foot":"list of vegies items",
+	"items":[{"title" : "Carrots","description" : "____ text here.","price" : "$__"},
+	 		{"title" : "Potates","description" : "____ text here.","price" : "$__"}
+	 	]
+	}
+};
+
+var table = Ti.UI.createTableView({
+	top : 20
+});
+
+var getData = function() {
+	alert("hi"),
+	var detailWindow = Ti.UI.createWindow({
+		backgroundColor : "#fff",
+		title : this.tittle
+	});
+	var detailText = Ti.UI.createLabel({
+
+		text : this.desc,
+		font : {
+			fontsize : "18pd",
+			fontFamily : "Arial"
+		}
+	});
+	/*var close = Ti.UI.createLabel({
+	text:"Close Window",
+	backgroundColor:"#000",
+	color:"#fff",
+	height:40,
+	//width:Ti.Platforms.displayCops.platfomrWidth,
+	bottom:0,
+	});
+	close.addEventListener("Click",function(){
+	detailWindow.close();
+	});
+	*/
+	//detailWindow.add(close);
+	detailWindow.add(detailText);
+	//detailWindow.open();
+	navWindow.openWindow(detailWindow);
+};
+
+/*var fruitsSection = Ti.UI.createTableViewSection({
+	headTitle : "Fruit",
+	footerTitle : "List of fruits items"
+});
+
+for (var i = 0, j = fruitsData.length; i < j; i++) {
+	var theRow = Ti.UI.createTableViewRow({
+		title : fruitsData[i].title,
+		desc : fruitsData[i].descripition,
+		hasDetail : true,
+		hasChild : true
+	});
+	fruitsSection.add(theRow);
+	theRow.addEventListener("click", getData);
+};
+
+var vesiesSection = Ti.UI.createTableViewSection({
+	headTitle : "Vegies",
+	footerTitle : "List of vegies items"
+});
+for (var i = 0, j = vegiesData.length; i < j; i++) {
+	var theRow = Ti.UI.createTableViewRow({
+		title : vegiesData[i].title,
+		hasDetail : true
+	});
+	vesiesSection.add(theRow);
+	theRow.addEventListener("click", getData);
+};*/
+
+var mySections = [];
+for(var i in myList){
+	//make the tableViewSections
+	var tableSection = Ti.UI.createTableViewSection({
+		headerTitle:myList[i].head,
+		footerTitle:myList[i].foot
+		
+	});
+	for(var j=0, k=myList[i].items.length; j<k; j++){
+		var tableRow = Ti.UI.createTableViewRow({
+			title:myList[i].items[j].title,
+			desc:myList[i].items[j].description,
+			hasDetail:true
+		});
+		tableRow.addEventListener("click",getData);
+		tableSection.add(tableRow);
+	}
+	mySections.push(tableSection);
+}
+
+/*var getData = function() {
+	var detailWindow = Ti.UI.createWindow({
+		backgroundColor : "#fff"
+	});
+	var detailText = Ti.UI.createTableView({
+		text : vesiesData[0].description,
+
+	});
+	detailWindow.add(detailText);
+	//detailWindow.open();
+};*/
+
+/*for (var i = 0, j = vegiesData.length; i < j; i++) {
+ var theRow = Ti.UI.createTableViewRow({
+ title : vegiesData[i].title
+ });
+ vesiesSection.add(theRow);
+ };*/
+
+//var askName = Ti.Platform.osname;
+//if (askName === "iphone") {
+//	table.style = Ti.UI.iPhone.TableViewStyle.GROUPED;
+//};
+
+
+//var mySections = [vesiesSection, fruitsSection];
+
+table.setData(mySections);
+mainWindow.add(table);
+//navWindow.open();
+mainWindow.open();

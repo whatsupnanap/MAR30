@@ -1,0 +1,6 @@
+var template = {
+	childTemplates:[
+	{
+		type: "Ti.UI.Label"
+,	}]
+}

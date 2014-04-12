@@ -1,5 +1,5 @@
 =run
-LAST_LAUNCH_TIMESTAMP=1397078994599
+LAST_LAUNCH_TIMESTAMP=1397253059475
 abcde\:launchMode=run
 abcde\:launchShortcut=com.appcelerator.titanium.mobile.ui.ios.simulator.iphone.launchShortcut.iPhone Retina (4 inch 64-bit)
 anotherFile\:launchMode=run
@@ -18,6 +18,8 @@ help\:launchShortcut=com.appcelerator.titanium.mobile.ui.android.device.launchSh
 iOS\ build\ and\ deploy\:ConsoleLogLevel=Debug
 json\:launchMode=run
 json\:launchShortcut=com.appcelerator.titanium.mobile.ui.android.device.launchShortcut
+list\ templates\:launchMode=run
+list\ templates\:launchShortcut=com.appcelerator.titanium.mobile.ui.android.device.launchShortcut
 list\ view\:launchMode=run
 list\ view\:launchShortcut=com.appcelerator.titanium.mobile.ui.android.device.launchShortcut
 preference.show.console.onError=true

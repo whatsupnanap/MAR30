@@ -1,3 +1,5 @@
+var minionData = require("json");
+
 //main window
 var mainWindow = Ti.UI.createWindow({
 	backgroundColor : "#fff"
@@ -34,44 +36,35 @@ var othersBtnLabel = Ti.UI.createLabel({
 	font:{fontSize:"14dp", fontFamily:"Helvetica"}
 });
 
-//minionの名前
-//var minionsData = [{
-	
-	
-
-/*var minionData = require("json");
-	alert("got this");*/
-	//console.log(file.msg);
-
-//var file = require("json");
-//console.log(file.msg);
-
 var table = Ti.UI.createTableView({
 	top : 20
 });
 
+//close button
+/*var close = Ti.UI.createView({
+	backgroundColor:"#333",
+});
+
+var closeButton = Ti.UI.createLabel({
+	text:"back",
+	font:{fontSize: 14, fontFamily:"Arial"},
+	height:50,
+	width:0,
+	bottom: 0,
+});
+
+var closeWindow = function(){
+	navWindow.close();
+};*/
+
+
+
 //２ページ目作成 minion
+
 var getData = function() {
-	var minionData = require("json");
-	var detailWindow2 = Ti.UI.createWindow({
-		backgroundColor : "#fff",
-		title: this.title
-	});
-	var detailText2 = Ti.UI.createLabel({
-		text : this.desc,
-		font:{fontsize:"18pd", fontFamily:"Arial"}
-	});
-	detailWindow2.add(detailText2);
-	//detailWindow2.add(table);
-	navWindow.openWindow(detailWindow2);
-};
-
-
-var getData2 = function() {
-	var minionData = require("json");
-	//alert("got this");
+	//alert("B");
 	var detailWindow = Ti.UI.createWindow({
-		backgroundColor : "#fff",
+		backgroundColor : "#555",
 		title: this.title
 	});
 	var detailText = Ti.UI.createLabel({
@@ -81,77 +74,67 @@ var getData2 = function() {
 	
 	//detailWindow.add(close);
 	detailWindow.add(detailText);
-	detailWindow.add(table);
+	//detailWindow.add(table);
 	//detailWindow.open();
 	navWindow.openWindow(detailWindow);
 };
 
 
 
+//closeButton.addEventListener("click", closeWindow);
 
-/*var minionData = require("json");
-	alert("got this");*/
-
-/*var minionsSection = Ti.UI.createTableViewSection({
-	headTitle : "minions",
-	footerTitle : "minions"
-});
-for (var i = 0, j = minionsData.length; i < j; i++) {
-	var theRow = Ti.UI.createTableViewRow({
-		title : minionsData[i].title,
-		desc:minionsData[i].description,
-		hasDetail:true,
-		hasChild:true
-	});
-	minionsSection.add(theRow);
-	theRow.addEventListener("click", getData);
-};*/
-
-/*var mySections = [];
-for(var i in "minionData"){
-	
-	//make the tableViewSections
-	var tableSection = Ti.UI.createTableViewSection({
-		headerTitle:jsonData[i].head,
-		footerTitle:jsonData[i].foot
+var test = function() { //rich note: added
+	var mySections = [];
+	for(var i in minionData.fData){
 		
-	});
-	for(var j=0, k=myList[i].items.length; j<k; j++){
-		var tableRow = Ti.UI.createTableViewRow({
-			title:jsonData[i].items[j].title,
-			desc:jsonData[i].items[j].description,
-			hasDetail:true
+		//make the tableViewSections
+		var tableSection = Ti.UI.createTableViewSection({
+			headerTitle:minionData.fData[i].head,
+			footerTitle:minionData.fData[i].foot
 		});
-		tableRow.addEventListener("click",getData);
-		tableSection.add(tableRow);
+		
+		for(var j=0, k=minionData.fData[i].minions.length; j<k; j++){
+			var tableRow = Ti.UI.createTableViewRow({
+				title:minionData.fData[i].minions[j].title,
+				desc:minionData.fData[i].minions[j].description,
+				hasDetail:true
+			});
+			//ここわいっぱつめのとこのクリック
+			tableRow.addEventListener("click",getData);
+			tableSection.add(tableRow);
+		}
+		mySections.push(tableSection);
 	}
-	mySections.push(tableSection);
-}*/
-
-//backボタン ここでくりっくを
-minion.addEventListener("click",getData2);
-others.addEventListener("click",getData);
-
-//iPhone用と伝えている
-var askName = Ti.Platform.osname;
-if (askName === "iphone") {
-	table.style = Ti.UI.iPhone.TableViewStyle.GROUPED;
+	table.setData(mySections);
+	
+	mainWindow.add(table);
+	
 };
 
 
+//backボタン ここでくりっくを minionかothersを選ぶクリック
+minion.addEventListener("click",test); //rich note: added "test"
+//closeButton.addEventListener("click",closeWindow);
+//others.addEventListener("click",lView);
+
+//iPhone用と伝えている
+/*var askName = Ti.Platform.osname;
+if (askName === "iphone") {
+	table.style = Ti.UI.iPhone.TableViewStyle.GROUPED;
+};*/
+
 //var mySections = [minionsSection];
 
+//table.setData(mySections); //rich note: moved inside the function "test"
 
 
-mainWindow.add(table);
-//table.setData(mySections);
-//detailWindow.add(table);
 
 //main windowにたされたやつら
 minion.add(minionBtnLabel);
+//mainWindow.add(table); //rich note: moved to "test" function
 mainWindow.add(minion);
+//close.add(closeButton);
 others.add(othersBtnLabel);
 mainWindow.add(others);
-
 navWindow.open();
 //mainWindow.open();

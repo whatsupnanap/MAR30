@@ -28,7 +28,7 @@ var table = Ti.UI.createTableView({
 	top : 20
 });
 
-var getData = function() {
+var getData = function(e) {
 	alert(this.title);
 	var dilWindow = Ti.UI.createWindow({
 		backgroundColor : "#fff",
@@ -103,11 +103,19 @@ for(var i in myList){
 			desc:myList[i].items[j].description,
 			hasDetail:true
 		});
-		tableRow.addEventListener("click",getData);
+		//tableRow.addEventListener("click",getData);
 		tableSection.add(tableRow);
 	}
 	mySections.push(tableSection);
 }
+
+table.addEventListener("click", function(event){
+	//console.log(event.tableSection);
+	//console.log(event.source.desc);
+	getData(event.source);
+});
+
+
 
 /*var getData = function() {
 	var detailWindow = Ti.UI.createWindow({
@@ -128,10 +136,11 @@ for(var i in myList){
  vesiesSection.add(theRow);
  };*/
 
-//var askName = Ti.Platform.osname;
+/*var askName = Ti.Platform.osname;
 //if (askName === "iphone") {
 //	table.style = Ti.UI.iPhone.TableViewStyle.GROUPED;
-//};
+//}*/
+
 
 
 //var mySections = [vesiesSection, fruitsSection];

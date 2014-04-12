@@ -1,0 +1,149 @@
+var minionData = require("json");
+
+//main window
+var mainWindow = Ti.UI.createWindow({
+	backgroundColor : "#fff"
+});
+
+var navWindow = Ti.UI.iOS.createNavigationWindow({
+	window: mainWindow
+});
+
+//１個目のボタン buttons 
+var minion = Ti.UI.createView({
+	backgroundColor:"#333",
+	width: 250,
+	height:60,
+	top:140,
+});
+
+var minionBtnLabel = Ti.UI.createLabel({
+	text:"abcd",
+	color:"#FFF",
+	font:{fontSize:"14dp", fontFamily:"Helvetica"}
+});
+
+//2個目のボタン
+var others = Ti.UI.createView({
+	backgroundColor:"#333",
+	width: 250,
+	height:60
+});
+
+var othersBtnLabel = Ti.UI.createLabel({
+	text:"Others",
+	color:"#FFF",
+	font:{fontSize:"14dp", fontFamily:"Helvetica"}
+});
+
+var table = Ti.UI.createTableView({
+	top : 20
+});
+
+//close button
+/*var close = Ti.UI.createView({
+	backgroundColor:"#333",
+	width: 250,
+	height:60,
+	bottom:0,
+});*/
+
+var closeButton = Ti.UI.createLabel({
+	text:"back",
+	font:{fontSize: 14, fontFamily:"Arial"},
+});
+/*
+var closeWindow = function(){
+	navWindow.close();
+};*/
+
+
+
+//２ページ目作成 minion
+
+var getData = function() {
+	//alert("B");
+	var detailWindow = Ti.UI.createWindow({
+		backgroundColor : "#555",
+		title: this.title
+	});
+	var detailText = Ti.UI.createLabel({
+		text : this.desc,
+		font:{fontsize:"18pd", fontFamily:"Arial"}
+	});
+	
+	//detailWindow.add(close);
+	detailWindow.add(close);
+	detailWindow.add(detailText);
+	//detailWindow.add(table);
+	//detailWindow.open();
+	navWindow.openWindow(detailWindow);
+};
+
+
+
+//closeButton.addEventListener("click", closeWindow);
+
+var test = function() { //rich note: added
+	var mySections = [];
+	for(var i in minionData.fData){
+		//make the tableViewSections
+		var tableSection = Ti.UI.createTableViewSection({
+			headerTitle:minionData.fData[i].head,
+			footerTitle:minionData.fData[i].foot
+		});
+		
+		for(var j=0, k=minionData.fData[i].minions.length; j<k; j++){
+			var tableRow = Ti.UI.createTableViewRow({
+				title:minionData.fData[i].minions[j].title,
+				desc:minionData.fData[i].minions[j].description,
+				hasDetail:true
+			});
+			//ここわいっぱつめのとこのクリック
+			tableRow.addEventListener("click",getData);
+			tableSection.add(tableRow);
+			tableRow.add(close);
+		}
+		mySections.push(tableSection);
+	}
+	table.setData(mySections);
+	mainWindow.add(table);
+	
+};
+
+
+
+/*var closeWindow = function(){
+	detailWindow.close();
+};
+
+closeButton.addEventListener("click",closeWindow);*/
+
+
+//backボタン ここでくりっくを minionかothersを選ぶクリック
+minion.addEventListener("click",test); //rich note: added "test"
+//closeButton.addEventListener("click",closeWindow);
+//others.addEventListener("click",lView);
+
+//iPhone用と伝えている
+/*var askName = Ti.Platform.osname;
+if (askName === "iphone") {
+	table.style = Ti.UI.iPhone.TableViewStyle.GROUPED;
+};*/
+
+//var mySections = [minionsSection];
+
+//table.setData(mySections); //rich note: moved inside the function "test"
+
+
+
+//main windowにたされたやつら
+minion.add(minionBtnLabel);
+//mainWindow.add(table); //rich note: moved to "test" function
+mainWindow.add(minion);
+//mainWindow.add(close);
+//close.add(closeButton);
+others.add(othersBtnLabel);
+mainWindow.add(others);
+navWindow.open();
+//mainWindow.open();

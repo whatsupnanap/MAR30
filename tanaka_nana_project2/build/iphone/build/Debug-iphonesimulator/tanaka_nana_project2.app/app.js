@@ -41,22 +41,23 @@ var table = Ti.UI.createTableView({
 });
 
 //close button
-/*var close = Ti.UI.createView({
+var close = Ti.UI.createView({
 	backgroundColor:"#333",
+	width: 250,
+	height:60,
+	bottom:0,
 });
 
 var closeButton = Ti.UI.createLabel({
 	text:"back",
 	font:{fontSize: 14, fontFamily:"Arial"},
-	height:50,
-	width:0,
-	bottom: 0,
 });
 
 var closeWindow = function(){
-	navWindow.close();
-};*/
+	detailWindow.close();
+};
 
+closeButton.addEventListener("click",closeWindow);
 
 
 //２ページ目作成 minion
@@ -73,6 +74,7 @@ var getData = function() {
 	});
 	
 	//detailWindow.add(close);
+	detailWindow.add(close);
 	detailWindow.add(detailText);
 	//detailWindow.add(table);
 	//detailWindow.open();
@@ -86,7 +88,6 @@ var getData = function() {
 var test = function() { //rich note: added
 	var mySections = [];
 	for(var i in minionData.fData){
-		
 		//make the tableViewSections
 		var tableSection = Ti.UI.createTableViewSection({
 			headerTitle:minionData.fData[i].head,
@@ -102,19 +103,22 @@ var test = function() { //rich note: added
 			//ここわいっぱつめのとこのクリック
 			tableRow.addEventListener("click",getData);
 			tableSection.add(tableRow);
+			//tableRow.add(close);
 		}
 		mySections.push(tableSection);
 	}
-	table.setData(mySections);
 	
+	table.setData(mySections);
 	mainWindow.add(table);
 	
 };
 
+table.add(close);
+
+
 
 //backボタン ここでくりっくを minionかothersを選ぶクリック
 minion.addEventListener("click",test); //rich note: added "test"
-//closeButton.addEventListener("click",closeWindow);
 //others.addEventListener("click",lView);
 
 //iPhone用と伝えている
@@ -133,7 +137,8 @@ if (askName === "iphone") {
 minion.add(minionBtnLabel);
 //mainWindow.add(table); //rich note: moved to "test" function
 mainWindow.add(minion);
-//close.add(closeButton);
+//mainWindow.add(close);
+close.add(closeButton);
 others.add(othersBtnLabel);
 mainWindow.add(others);
 navWindow.open();
